@@ -1,0 +1,233 @@
+// TODO: custom mixin here
+@mixin arrow-icon($param: 'next') {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 60px;
+    top: calc(50% - 3px);
+
+    @if $param == 'next' {
+      transform-origin: 10px center;
+    } @else {
+      transform-origin: 0 center;
+    }
+
+    width: 10px;
+    height: 2px;
+    background: $gray-darker;
+  }
+
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background: $link-hover-color;
+    }
+  }
+}
+
+@mixin line-clamp($line-clamp) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+@mixin scrollbar-custom($scrollbar-thumb: $gray-400, $scrollbar-width-lg: 2px) {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+    background-color: $gray-lightest;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background-color: $scrollbar-thumb;
+
+    @include media-breakpoint-up(lg) {
+      width: $scrollbar-width-lg;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-thumb;
+  }
+}
+
+@mixin pagination-bullets-custom($bottom-position-mobile: 0, $bottom-position-desktop: 0) {
+  .swiper-pagination-bullets {
+    bottom: $bottom-position-mobile;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 30px;
+
+    @include media-breakpoint-up(lg) {
+      bottom: $bottom-position-desktop;
+    }
+  }
+
+  .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 5px;
+
+    @include media-breakpoint-up(md) {
+      margin: 0 8px;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    background-color: transparent;
+    opacity: 1;
+    width: 5px;
+    height: 5px;
+    transition: all 0.3s;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid $gray-darker;
+
+    @include media-breakpoint-up(md) {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    height: 16px;
+    border-radius: 30px;
+    background-color: $gray-darker;
+
+    @include media-breakpoint-up(md) {
+      height: 24px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      height: 32px;
+    }
+  }
+}
+
+// @params:
+//    $lines:         Number of skeleton lines (last line will always be of random length)
+//    $line-height:   Height (px) of each skeleton line
+//    $line-gap:      Gap (px) between each skeleton line
+//    $background:    Background color of the skeleton element
+//    $shimmer:       Color of the shimmer effect. Note that due to the fact that shimmer is a single element animated across the entire line group
+//                    it'll need to be chosen carefully to make sure it's not visible in the container.
+//    $speed:         Speed of the animation effect
+//
+// @usage:
+//    p { @include seleton(2, 2s, 16px, 8px, #dddddd, transparentize(255,255,255,.6))}
+//    Will add 2 lines of skeleton - each 16px high, with an 8px gap between.
+//
+
+$mist: $gray-300;
+$shimmerLight: rgba(255, 255, 255, 0.6);
+
+@mixin skeleton($lines: 2,
+  $speed: 2.5s,
+  $line-height: 24px,
+  $line-gap: 8px,
+  $background: $mist,
+  $shimmer: $shimmerLight) {
+  $key: unique-id();
+  $background-images: ();
+  $background-sizes: ();
+  $background-positions: ();
+  $background-blend-modes: ();
+  $background-images: append($background-images,
+      linear-gradient(90deg, transparent 20%, $shimmer 50%, transparent 80%),
+      comma);
+  $background-sizes: append($background-sizes, 50% 100%, comma);
+  $background-positions: append($background-positions, -60% 0, comma);
+
+  @for $i from 1 through $lines {
+    $background-images: append($background-images,
+        linear-gradient($background 0%, $background 100%),
+        comma);
+    $background-positions: append($background-positions,
+        0 (($i - 1) * ($line-height + $line-gap)));
+
+    @if $i !=$lines {
+      $background-sizes: append($background-sizes, 100% $line-height, comma);
+    }
+
+    @else {
+      $background-sizes: append($background-sizes,
+          100% $line-height,
+          comma);
+    }
+  }
+
+  $background-positions-animated: set-nth($background-positions, 1, 180% 0);
+
+  &:empty {
+    display: block;
+    width: 100%;
+    min-height: $lines * ($line-height + $line-gap) - $line-gap;
+    background-image: $background-images;
+    background-position: $background-positions;
+    background-size: $background-sizes;
+    background-repeat: no-repeat;
+    animation: hide-show $speed infinite;
+    // animation: skeleton-shimmer-#{$key} $speed infinite;
+    animation-delay: 0s;
+  }
+
+  @keyframes skeleton-shimmer-#{$key} {
+    to {
+      background-position: $background-positions-animated;
+    }
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes hide-show {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+//Mixin center($horizontal, $vertical)
+// @usage: @include center(true, true)
+@mixin centerer($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}

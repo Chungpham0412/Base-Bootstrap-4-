@@ -1,0 +1,22 @@
+// font calibri
+ @font-face
+ {
+   font-family: "Calibri";
+   font-style: normal;
+   src:  url("./fonts/Calibri/Calibri.ttf") format("truetype");
+   font-weight: 400;
+ }
+ @font-face
+ {
+   font-family: "Calibri";
+   font-style: normal;
+   src:  url("./fonts/Calibri/Calibri-Bold.ttf") format("truetype");
+   font-weight: 600;
+ }
+ @font-face
+ {
+   font-family: "Calibri";
+   font-style: normal;
+   src:  url("./fonts/Calibri/Calibri-Italic.ttf") format("truetype");
+   font-weight: 400;
+ }

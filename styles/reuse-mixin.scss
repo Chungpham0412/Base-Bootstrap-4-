@@ -1,0 +1,20 @@
+// @import './styles/variables';
+// @import './styles/bootstrap/scss/bootstrap.scss';
+// @import './styles/mixin';
+
+// Booststrap variable & mixins
+@import './bootstrap/scss/functions';
+@import './bootstrap/scss/variables';
+@import './bootstrap/scss/mixins';
+
+// Variable & mixins overide
+@import './_functions';
+@import './_variables';
+@import './_mixin';
+
+// Bootstrap
+// @import './styles/bootstrap/scss/grid';
+// @import './styles/bootstrap/scss/reboot';
+// @import './styles/bootstrap/scss/type';
+// @import './styles/bootstrap/scss/buttons';
+// @import './styles/bootstrap/scss/forms';

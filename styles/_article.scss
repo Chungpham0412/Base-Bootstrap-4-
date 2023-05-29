@@ -1,0 +1,311 @@
+// Article Item
+.article {
+  &__image {
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 20px;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      // height: 100%;
+      object-fit: cover;
+    }
+
+    .heart {
+      top: 13px;
+      right: 12px;
+    }
+  }
+
+  &__content {
+    font-size: $font-size-small;
+    color: $gray-darker;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h4-font-size;
+    }
+
+    &__title {
+      font-size: $h4-font-size;
+      font-weight: $font-weight-normal;
+      color: $gray-darker;
+      margin-bottom: 18px;
+      line-height: 1;
+
+      @include media-breakpoint-up(md) {
+        font-size: $h4-font-size + 0.4;
+      }
+
+      @include media-breakpoint-up(lg) {
+        font-size: $h3-font-size;
+        margin-bottom: 16px;
+      }
+
+      @include media-breakpoint-up(xl) {
+        font-size: $h3-font-size + 0.4;
+        font-weight: $font-weight-light;
+      }
+
+      @include media-breakpoint-up(xxl) {
+        font-size: $h2-font-size;
+        line-height: normal;
+      }
+
+      a {
+        color: inherit;
+
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+    }
+
+    &__price {
+      margin-bottom: 10px;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 16px;
+      }
+
+      &--main {
+        font-size: $h5-font-size;
+        font-weight: $font-weight-normal;
+        display: block;
+        line-height: 1;
+
+        @include media-breakpoint-up(lg) {
+          font-size: $h4-font-size + 0.4;
+        }
+
+        @include media-breakpoint-up(xl) {
+          font-size: $h3-font-size;
+        }
+      }
+
+      &--old {
+        font-size: $font-size-small;
+        color: $gray;
+        text-decoration: line-through;
+
+        @include media-breakpoint-up(lg) {
+          font-size: $font-size-large;
+        }
+      }
+    }
+
+    &__description {
+      margin-bottom: 0;
+      font-size: $font-size-base;
+
+      @include media-breakpoint-up(lg) {
+        font-size: $font-size-large;
+      }
+
+      @include media-breakpoint-up(xxl) {
+        font-size: $h5-font-size;
+      }
+    }
+
+    &__link {
+      margin-top: 24px;
+    }
+
+    &__action {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      @include media-breakpoint-up(md) {
+        display: block;
+      }
+
+      @include media-breakpoint-up(xl) {
+        margin-top: 32px;
+      }
+
+      .btn {
+        min-width: 200px;
+        margin: 0 auto;
+
+        @include media-breakpoint-up(xxl) {
+          // min-width: inherit;
+          min-width: 240px;
+        }
+
+        & + .btn {
+          margin-top: 10px;
+
+          @include media-breakpoint-up(md) {
+            margin: 0 0 0 20px;
+          }
+        }
+      }
+    }
+  }
+
+  // Article Horizontal
+  &--horizontal {
+    display: block;
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .article__image {
+      @include media-breakpoint-up(md) {
+        width: 320px;
+        margin-bottom: 0;
+      }
+
+      @include media-breakpoint-up(lg) {
+        width: 390px;
+        // width: 420px;
+      }
+
+      @include media-breakpoint-up(xl) {
+        // width: 460px;
+      }
+    }
+
+    .article__content {
+      display: flex;
+      flex-direction: column;
+      margin: auto 0;
+
+      @include media-breakpoint-up(md) {
+        width: calc(100% - 320px);
+        padding-left: 40px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        // width: calc(100% - 390px);
+        width: calc(100% - 420px);
+        padding-left: 90px;
+      }
+
+      @include media-breakpoint-up(xl) {
+        // padding-left: 90px;
+        width: calc(100% - 460px);
+      }
+    }
+
+    .article__content__link {
+      margin-right: auto;
+    }
+
+    // Content reversse
+    &--reverse {
+      flex-direction: row-reverse;
+
+      .article__content {  
+        @include media-breakpoint-up(md) {
+          padding-left: 0;
+          padding-right: 90px;
+        }
+      }
+    }
+
+    // Content width 50%
+    &--w50 {
+      .article__image {
+        @include media-breakpoint-up(xxl) {
+          width: 640px;
+        }
+      }
+    
+      .article__content {
+        @include media-breakpoint-up(xxl) {
+          padding-left: 166px;
+          width: calc(100% - 640px);
+        }
+      }
+    
+      &.article--horizontal--reverse {
+        .article__content {
+          @include media-breakpoint-up(xxl) {
+            padding-left: 60px;
+            padding-right: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Product item horizontal
+.product-item--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  
+  .article__image {
+    width: 106px;
+
+    @include media-breakpoint-up(md) {
+      width: 240px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 390px;
+    }
+  }
+
+  .article__content__title {
+    @include media-breakpoint-down(sm) {
+      font-size: $h5-font-size;
+      margin-bottom: 12px;
+    }
+  }
+
+  .article__content {
+    width: calc(100% - 106px);
+    padding: 0 0 20px 12px;
+
+    @include media-breakpoint-up(md) {
+      width: calc(100% - 240px);
+      padding: 0 0 20px 20px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: calc(100% - 390px);
+      padding: 0 0 40px 90px;
+    }
+  }
+
+  .article__content__price--main {
+    @include media-breakpoint-down(sm) {
+      font-size: $font-size-large;
+    }
+  }
+
+  .article__content__action {
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+  }
+
+  &.article--horizontal--reverse {
+    .article__content {
+      padding-left: 0;
+      padding-right: 0;
+
+      @include media-breakpoint-up(xxl) {
+        padding-right: 60px;
+      }
+    }
+  }
+}
