@@ -3,7 +3,7 @@
 $white:    #fff;
 $gray-100: #f5f5f7;
 $gray-200: #e6e6e6;
-$gray-300: #d8d8d8;
+$gray-300: #D9D9D9;
 $gray-400: #ccc;
 $gray-500: #acacac;
 $gray-600: #707070;
@@ -31,22 +31,25 @@ $page-title:       #007CC7;
 // Brand colors
 // -------------------------
 
-$primary:             #f37021;
-$secondary:           #0072bc;
+$primary:             #FD4A00;
+$secondary:           #007CC7;
 $success:             #00ae4d;
 // $warning:         #ffdb00;
 // $info:            #0abceb;
 $danger:              #d9534f;
-$os-orange-darker:    #df6116;
-$os-orange-dark:      #f37021;
-$os-orange:           #fee6d3;
-$os-orange-lighter:   #feeee4;
-$os-orange-lightest:  #fef2e9;
-$os-brown:            #e0dac9;
-$os-brown-lighter:    #f6f4ef;
-$os-brown-lightest:   #fcfbfa;
-$os-blue:             #0072bc;
-$os-green:            #00ae4d;
+$orange-darker:       #df6116;
+$orange-dark:         #FF7200;
+$orange:              #FF7200;
+$orange-lighter:      #feeee4;
+$orange-lightest:     #fef2e9;
+$brown:            #e0dac9;
+$brown-lighter:    #f6f4ef;
+$brown-lightest:   #fcfbfa;
+$blue:             #077BC1;
+$green:            #00ae4d;
+
+$yellow:              #FFC600;
+$yellow-dark:         #FFBA00;
 
 $theme-colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -57,23 +60,25 @@ $theme-colors: map-merge(
     "white":               $white,
     "primary":             $primary,
     "secondary":           $secondary,
-    "os-orange-darker":    $os-orange-darker,
-    "os-orange-dark":      $os-orange-dark,
-    "os-orange":           $os-orange,
-    "os-orange-lighter":   $os-orange-lighter,
-    "os-orange-lightest":  $os-orange-lightest,
-    "os-brown":            $os-brown,
-    "os-brown-lighter":    $os-brown-lighter,
-    "os-brown-lightest":   $os-brown-lightest,
-    "os-blue":             $os-blue,
-    "os-green":            $os-green,
+    "os-orange-darker":    $orange-darker,
+    "os-orange-dark":      $orange-dark,
+    "os-orange":           $orange,
+    "os-orange-lighter":   $orange-lighter,
+    "os-orange-lightest":  $orange-lightest,
+    "os-brown":            $brown,
+    "os-brown-lighter":    $brown-lighter,
+    "os-brown-lightest":   $brown-lightest,
+    "os-blue":             $blue,
+    "os-green":            $green,
+    "yellow":              $yellow,
+    "yellow-dark":         $yellow-dark,
   ),
   $theme-colors
 );
 
 // Body
 
-$body-bg:               #fff;
+$body-bg:               $white;
 $body-color:            $gray-dark;
 $text-color:            $gray;
 $border-color:          $gray;
@@ -97,8 +102,9 @@ $font-family-base:        $font-family-serif;
 // Language Fonts Family
 $font-size-base:          1.6rem;
 $font-size-large:         1.8rem;
+$font-size-largest:       2.4rem;
 $font-size-small:         1.4rem;
-$font-size-smaller:       1.2rem;
+$font-size-smaller:       1rem;
 
 $font-size-mobile:        1.4rem;
 
@@ -134,6 +140,8 @@ $headings-font-family:    $font-family-sans-serif;
 $headings-font-weight:    $font-weight-light;
 $headings-line-height:    1.33333;
 $headings-color:          $gray-darker;
+$headings-font-size:      5.7rem;
+$headings-font-size-mobile:      $h2-font-size-mobile;
 
 $border-radius:               .3rem;
 $border-radius-lg:            .4rem;
@@ -173,6 +181,12 @@ $btn-padding-x-lg:            2.4rem;
 $btn-font-size-lg:            $input-btn-font-size;
 $btn-border-radius-lg:        0;
 
+$btn-padding-y-xl:            2rem;
+$btn-padding-x-xl:            4rem;
+$btn-font-size-xl:            2.4rem;
+$btn-line-height-xl:          1.5;
+$btn-border-radius-xl:        1.5rem;
+
 // button style
 $btn-default-color:              $white;
 $btn-default-bg:                 $text-color;
@@ -191,8 +205,8 @@ $btn-primary-color-hover:        $primary;
 $btn-primary-bg-hover:           $white;
 $btn-primary-border-hover:       $white;
 $btn-primary-color-active:       $primary;
-$btn-primary-bg-active:          $os-orange-darker;
-$btn-primary-border-active:      $os-orange-darker;
+$btn-primary-bg-active:          $orange-darker;
+$btn-primary-border-active:      $orange-darker;
 
 $btn-secondary-color:          #fff;
 $btn-secondary-bg:               $secondary;
@@ -257,7 +271,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1680px
+  xxl: 1600px
 );
 
 $container-max-widths: (
@@ -300,8 +314,9 @@ $SUB_MENU_NAV: $MENU_NAV + 1;
 // INFO: variables for pages here
 // PAGE
 //Header
-$SUB_NAV_WIDTH: 390px;
+$SUB_NAV_WIDTH: 450px;
 $SUB_NAV_CONTENT_WIDTH: calc(100% - #{$SUB_NAV_WIDTH});
 
 $HEADER_MOBILE_HEIGHT: 55px;
+$HEADER_MENU_MOBILE_HEIGHT: 100px;
 $HEADER_DESKTOP_HEIGHT: 72px;
